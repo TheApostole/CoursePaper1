@@ -1,9 +1,11 @@
+import java.util.Objects;
+
 public class Employee {
     private String fIO;
     private int department;
     private int salary;
-    private static long counter;
-    private long id;
+    private static int counter;
+    private int id;
     /**
      * Геттеры
      */
@@ -16,10 +18,10 @@ public class Employee {
     public int getSalary() {
         return salary;
     }
-    public static long getCounter() {
+    public static int getCounter() {
         return counter;
     }
-    public long getId() {
+    public int getId() {
         return id;
     }
     /**
@@ -34,10 +36,10 @@ public class Employee {
     public void setSalary(int salary) {
         this.salary = salary;
     }
-    public static void setCounter(long counter) {
+    public static void setCounter(int counter) {
         Employee.counter = counter;
     }
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
     /**
@@ -54,6 +56,24 @@ public class Employee {
      */
     @Override
     public String toString() {
-        return "Id: " + id + " ФИО: " + fIO + " Отдел: " + department + " Зарплата: " + salary;
+        return "Id: " + id + " | " + "ФИО: " + fIO + " | " + "Отдел: " + department + " | " + "Зарплата: " + salary;
     }
+    /**
+     * Метод equals()
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return department == employee.department && salary == employee.salary && id == employee.id && fIO.equals(employee.fIO);
+    }
+    /**
+     * Метод hashCode()
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(fIO, department, salary, id);
+    }
+
 }
